@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-// import Navbar from "../ui/Navbar";
+import Navbar from "../ui/Navbar";
 // import FooterSection from "./FooterSection";
 import Hero from "./Hero";
 import AboutUs from "./AboutUs";
@@ -17,7 +17,7 @@ const LandingPage = () => {
     >
 
       {/* Header */}
-      {/* <Navbar /> */}
+      <Navbar />
 
       {/* Hero Section */}
       <Hero />
