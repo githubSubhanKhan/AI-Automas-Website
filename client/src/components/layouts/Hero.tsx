@@ -71,7 +71,7 @@ const StarsBackground: React.FC<StarsBackgroundProps> = ({ children }) => {
 
   return (
     <div
-      className="relative size-full overflow-hidden bg-gradient-to-b from-purplecustom/20 via-black to-black"
+      className="relative size-full overflow-hidden bg-gradient-to-b from-whitecustom via-whitecustom to-pinkcustom/5"
       onMouseMove={handleMouseMove}
     >
       <motion.div style={{ x: springX, y: springY }} className="pointer-events-none">
@@ -102,7 +102,7 @@ const Hero = () => {
         {/* Gradient Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
-            className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-pinkcustom/30 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-pinkcustom/20 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3],
@@ -114,7 +114,7 @@ const Hero = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-purplecustom/30 rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-purplecustom/20 rounded-full blur-3xl"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.5, 0.3, 0.5],
@@ -134,7 +134,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-whitecustom mb-6 sm:mb-8 md:mb-10 tracking-wide leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-800 mb-6 sm:mb-8 md:mb-10 tracking-wide leading-tight"
           >
             You Don't Need Another
           </motion.h1>
@@ -161,7 +161,7 @@ const Hero = () => {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    textShadow: '0 0 40px rgba(226, 101, 227, 0.5)',
+                    textShadow: '0 0 40px rgba(226, 101, 227, 0.3)',
                   }}
                 >
                   {word}
@@ -174,7 +174,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-whitecustom/80 font-light tracking-wide max-w-3xl mx-auto px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-light tracking-wide max-w-3xl mx-auto px-4"
           >
             You need an AI that does it all
           </motion.p>
@@ -187,7 +187,7 @@ const Hero = () => {
             className="mt-8 sm:mt-10 md:mt-12"
           >
             <motion.button
-              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-pinkcustom to-purplecustom text-whitecustom font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg"
+              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-pinkcustom to-purplecustom text-white font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -239,7 +239,7 @@ const Hero = () => {
         </div>
 
         {/* Bottom Gradient Overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-32 sm:h-48 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-32 sm:h-48 bg-gradient-to-t from-pinkcustom/5 to-transparent pointer-events-none" />
       </div>
     </StarsBackground>
   );
