@@ -87,7 +87,7 @@ const StarsBackground: React.FC<StarsBackgroundProps> = ({ children }) => {
 // Main Hero Component
 const Hero = () => {
   const [currentWord, setCurrentWord] = useState(0);
-  const words = ['Software', 'Platform', 'Solution', 'Tool', 'System'];
+  const words = ['Software', 'Platform', 'Solution', 'Tool'];
   
   useEffect(() => {
     const interval = setInterval(() => {
