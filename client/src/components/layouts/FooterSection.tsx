@@ -112,10 +112,10 @@ const FooterPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-800 leading-[1.2] mb-6 sm:mb-8"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-800 leading-tight mb-6 sm:mb-8"
               >
                 <span className="inline-block">Begin your </span>
-                <span className="inline-block" style={primaryGradientText}>intelligent automation</span>
+                <span className="inline-block pb-[0.08em]" style={primaryGradientText}>intelligent automation</span>
                 <br className="hidden sm:block" />
                 <span className="inline-block">journey&nbsp; </span>
                 <span className="inline-block" style={primaryGradientText}>today</span>
