@@ -6,6 +6,7 @@ import AboutUs from "./AboutUs";
 import Services from "./Services";
 import Results from "./Results";
 import Sponsers from "./Sponsers";
+import FooterSection from "./FooterSection";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -32,6 +33,8 @@ const LandingPage = () => {
       <Results />
 
       <Sponsers />
+
+      <FooterSection />
 
       {/* About Us Section */}
       {/* <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
