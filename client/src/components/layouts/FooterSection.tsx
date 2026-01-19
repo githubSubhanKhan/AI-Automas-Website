@@ -183,7 +183,7 @@ const FooterPage = () => {
                       <img
                         src="/logos/logo.png"
                         alt="Company Logo"
-                        className="h-16 sm:h-20 md:h-24 w-auto object-contain opacity-90 hover:opacity-100 transition"
+                        className="h-10 sm:h-16 md:h-18 w-auto object-contain opacity-90 hover:opacity-100 transition"
                       />
                     </div>
 

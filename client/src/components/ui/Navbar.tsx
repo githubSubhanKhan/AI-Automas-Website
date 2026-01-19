@@ -15,7 +15,7 @@ const Navbar = () => {
             className="flex items-center"
           >
             <img 
-               src="/logos/logo.png"
+               src="/logos/FullLogo.png"
                 alt="SimpliScale"
                 className="h-36 sm:h-40 md:h-42 w-auto"
             />
