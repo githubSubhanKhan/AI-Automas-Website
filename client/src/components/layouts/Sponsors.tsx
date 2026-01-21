@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+
 
 // Gradient definitions (imported from ui/gradients)
 const primaryGradient = "linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)";
@@ -104,6 +106,7 @@ const SponsorMarquee = () => {
 };
 
 const Sponsors = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
@@ -198,6 +201,7 @@ const Sponsors = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <motion.button
+                onClick={() => navigate('/form')}
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 className="relative px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-base sm:text-lg md:text-xl font-semibold text-white rounded-full overflow-hidden group shadow-xl"

@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-md border-b border-white/10">
 
@@ -30,6 +33,7 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
           >
             <motion.button
+              onClick={() => navigate('/form')}
               className="group relative px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-[#e265e3] to-[#9861c5] text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

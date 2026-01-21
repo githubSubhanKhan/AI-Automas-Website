@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+
 
 interface StarLayerProps {
   count: number;
@@ -86,6 +88,7 @@ const StarsBackground: React.FC<StarsBackgroundProps> = ({ children }) => {
 
 // Main Hero Component
 const Hero = () => {
+  const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
   const words = ['Software', 'Platform', 'Solution', 'Tool'];
   
@@ -187,6 +190,7 @@ const Hero = () => {
             className="mt-8 sm:mt-10 md:mt-12"
           >
             <motion.button
+              onClick={() => navigate('/form')}
               className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-pinkcustom to-purplecustom text-white font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
