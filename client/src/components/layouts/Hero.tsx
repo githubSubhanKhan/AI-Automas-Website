@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { Phone, X } from 'lucide-react';
 
 
@@ -89,10 +88,10 @@ const StarsBackground: React.FC<StarsBackgroundProps> = ({ children }) => {
 
 // Main Hero Component
 const Hero = () => {
-  const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
   const [showCallModal, setShowCallModal] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [notification, setNotification] = useState<{show: boolean, message: string, type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
   const words = ['Software', 'Platform', 'Solution', 'Tool'];
   
   useEffect(() => {
@@ -101,12 +100,6 @@ const Hero = () => {
     }, 2500);
     return () => clearInterval(interval);
   }, []);
-
-  // const handleCall = () => {
-  //   if (phoneNumber.trim()) {
-  //     window.location.href = `tel:${phoneNumber}`;
-  //   }
-  // };
 
   const handleCall = async () => {
   if (!phoneNumber.trim()) return;
@@ -121,14 +114,17 @@ const Hero = () => {
     const data = await res.json();
 
     if (data.success) {
-      alert("📞 Call initiated! You will receive a call shortly.");
+      setNotification({show: true, message: "📞 Call initiated! You will receive a call shortly.", type: 'success'});
+      setTimeout(() => setNotification({show: false, message: '', type: 'success'}), 4000);
       setShowCallModal(false);
       setPhoneNumber("");
     } else {
-      alert(data.message || "Call failed");
+      setNotification({show: true, message: data.message || "Call failed. Please try again.", type: 'error'});
+      setTimeout(() => setNotification({show: false, message: '', type: 'error'}), 4000);
     }
   } catch (err) {
-    alert("Server error. Please try again.");
+    setNotification({show: true, message: "Server error. Please try again.", type: 'error'});
+    setTimeout(() => setNotification({show: false, message: '', type: 'error'}), 4000);
   }
 };
 
@@ -136,38 +132,26 @@ const Hero = () => {
   return (
     <StarsBackground>
       <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        {/* Floating Call Button */}
-        <motion.button
-          onClick={() => setShowCallModal(true)}
-          className="fixed top-6 right-6 z-50 p-4 bg-gradient-to-r from-pinkcustom to-purplecustom text-white rounded-full shadow-lg"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          animate={{
-            boxShadow: [
-              '0 0 20px rgba(226, 101, 227, 0.4)',
-              '0 0 40px rgba(226, 101, 227, 0.6)',
-              '0 0 20px rgba(226, 101, 227, 0.4)',
-            ],
-          }}
-          transition={{
-            boxShadow: {
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
-        >
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <Phone size={24} />
-          </motion.div>
-        </motion.button>
+        {/* Modern Notification */}
+        <AnimatePresence>
+          {notification.show && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", damping: 20, stiffness: 300 }}
+              className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none"
+            >
+              <div className={`${
+                notification.type === 'success' 
+                  ? 'bg-gradient-to-r from-green-500 to-emerald-500' 
+                  : 'bg-gradient-to-r from-red-500 to-rose-500'
+              } text-white px-6 py-4 rounded-2xl shadow-2xl backdrop-blur-sm w-full max-w-md pointer-events-auto`}>
+                <p className="text-center font-semibold text-sm sm:text-base">{notification.message}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Call Modal */}
         <AnimatePresence>
@@ -188,9 +172,9 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md mx-4"
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
               >
-                <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-md">
                   {/* Header */}
                   <div className="bg-gradient-to-r from-pinkcustom to-purplecustom p-6 text-white relative">
                     <button
@@ -327,15 +311,15 @@ const Hero = () => {
             You need an AI that does it all
           </motion.p>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-8 sm:mt-10 md:mt-12"
+            className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <motion.button
-              onClick={() => navigate('/form')}
+              onClick={() => window.location.href = '/form'}
               className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-pinkcustom to-purplecustom text-white font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -350,6 +334,33 @@ const Hero = () => {
                   boxShadow: [
                     '0 0 0px rgba(226, 101, 227, 0)',
                     '0 0 30px rgba(226, 101, 227, 0.6)',
+                    '0 0 0px rgba(226, 101, 227, 0)',
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+              />
+            </motion.button>
+
+            <motion.button
+              onClick={() => setShowCallModal(true)}
+              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-white text-gray-800 font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg border-2 border-gray-300 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Phone size={20} />
+              <span className="relative z-10">Schedule Call</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-pinkcustom/10 to-purplecustom/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                animate={{
+                  boxShadow: [
+                    '0 0 0px rgba(226, 101, 227, 0)',
+                    '0 0 20px rgba(226, 101, 227, 0.4)',
                     '0 0 0px rgba(226, 101, 227, 0)',
                   ],
                 }}
