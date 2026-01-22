@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,54 +54,101 @@ const FloatingParticles = () => {
   );
 };
 
-// Sponsor logos (you can replace these with actual logo URLs)
-const sponsors = [
-  { name: "TechCorp", logo: "/public/CompanyLogo/01.jpg" }, 
-  { name: "InnovateLab", logo: "/public/CompanyLogo/01.jpg" },
-  { name: "DataFlow", logo: "/public/CompanyLogo/02.jpg" },
-  { name: "CloudSync", logo: "/public/CompanyLogo/01.jpg" },
-  { name: "AI Solutions", logo: "/public/CompanyLogo/03.jpg" },
-  { name: "FutureTech", logo: "/public/CompanyLogo/01.jpg" },
-  { name: "SmartSys", logo: "/public/CompanyLogo/03.jpg" },
-  { name: "NextGen", logo: "/public/CompanyLogo/02.jpg" },
+// Video paths
+const videos = [
+  { name: "Video 1", src: "/public/videos/video.mp4" },
+  { name: "Video 2", src: "/public/videos/video1.mp4" },
+  { name: "Video 3", src: "/public/videos/video.mp4" },
+  { name: "Video 4", src: "/public/videos/video1.mp4" },
+  { name: "Video 5", src: "/public/videos/video.mp4" },
 ];
 
 
-// Infinite scrolling sponsor logos
+// Infinite scrolling video marquee
 const SponsorMarquee = () => {
-  const duplicatedSponsors = [...sponsors, ...sponsors, ...sponsors];
+  const duplicatedVideos = [...videos, ...videos, ...videos];
+  const [isPaused, setIsPaused] = useState(false);
+  const [expandedVideo, setExpandedVideo] = useState<number | null>(null);
+
   
   return (
-    <div className="relative w-full overflow-hidden py-8 sm:py-12">
-      <motion.div
-        className="flex gap-8 sm:gap-12 md:gap-16"
-        animate={{
-          x: [0, -1600],
-        }}
-        transition={{
-          x: {
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          },
-        }}
-      >
-        {duplicatedSponsors.map((sponsor, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 bg-white/80 backdrop-blur-sm px-8 sm:px-10 py-6 sm:py-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
+    <>
+      <div className="relative w-full overflow-hidden py-8 sm:py-12">
+        <motion.div
+          className="flex gap-6 sm:gap-8 md:gap-10"
+          animate={{
+            x: isPaused ? undefined : [0, -2000],
+          }}
+          transition={{
+            x: {
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear",
+            },
+          }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {duplicatedVideos.map((video, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 bg-white/80 backdrop-blur-sm p-2 sm:p-3 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group overflow-hidden cursor-pointer"
+              onClick={() => setExpandedVideo(index)}
+            >
+              <motion.video
+                src={video.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-32 sm:h-40 md:h-48 w-56 sm:w-64 md:w-80 object-cover rounded-xl opacity-90 group-hover:opacity-100 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Expanded Video Modal */}
+      {expandedVideo !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setExpandedVideo(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.8 }}
+            className="relative bg-white/90 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-2xl border border-gray-100 max-w-4xl w-full mx-4"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.img
-              src={sponsor.logo}
-              alt={sponsor.name}
-              className="h-16 sm:h-20 md:h-24 w-auto object-contain opacity-80 group-hover:opacity-100 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
-            /> 
-          </div>
-        ))}
-      </motion.div>
-    </div>
+            <button
+              onClick={() => setExpandedVideo(null)}
+              className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-lg hover:scale-110 transition-transform z-10"
+              style={{
+                background: primaryGradient,
+              }}
+            >
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <video
+              src={duplicatedVideos[expandedVideo].src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto rounded-xl"
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </>
   );
 };
 
