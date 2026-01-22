@@ -102,11 +102,36 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleCall = () => {
-    if (phoneNumber.trim()) {
-      window.location.href = `tel:${phoneNumber}`;
+  // const handleCall = () => {
+  //   if (phoneNumber.trim()) {
+  //     window.location.href = `tel:${phoneNumber}`;
+  //   }
+  // };
+
+  const handleCall = async () => {
+  if (!phoneNumber.trim()) return;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/call/call", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: phoneNumber }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("📞 Call initiated! You will receive a call shortly.");
+      setShowCallModal(false);
+      setPhoneNumber("");
+    } else {
+      alert(data.message || "Call failed");
     }
-  };
+  } catch (err) {
+    alert("Server error. Please try again.");
+  }
+};
+
 
   return (
     <StarsBackground>
@@ -254,11 +279,12 @@ const Hero = () => {
         <div className="relative z-10 text-center max-w-6xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-800 mb-6 sm:mb-8 md:mb-10 tracking-wide leading-tight"
-          >
-            You Don't Need Another
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-extralight text-gray-800 mb-8 sm:mb-10 md:mb-12 tracking-tight leading-snug text-center mt-20"
+  style={{ fontFamily: "'Poppins', sans-serif" }}
+>
+  You Don't Need Another
           </motion.h1>
           
           {/* Animated rotating text */}
