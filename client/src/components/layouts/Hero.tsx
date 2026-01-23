@@ -312,16 +312,16 @@ const Hero = () => {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div
+                    <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="mt-8 sm:mt-10 md:mt-12 flex flex-col items-center justify-center gap-3 w-full max-w-xs sm:max-w-sm mx-auto px-4"
           >
             <motion.button
               onClick={() => window.location.href = '/form'}
-              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-pinkcustom to-purplecustom text-white font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg"
-              whileHover={{ scale: 1.05 }}
+              className="group relative w-full px-6 py-3.5 bg-gradient-to-r from-pinkcustom to-purplecustom text-white font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-2xl"
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10">Get Started</span>
@@ -346,11 +346,11 @@ const Hero = () => {
 
             <motion.button
               onClick={() => setShowCallModal(true)}
-              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-white text-gray-800 font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base md:text-lg border-2 border-gray-300 flex items-center justify-center gap-2"
-              whileHover={{ scale: 1.05 }}
+              className="group relative w-full px-6 py-3.5 bg-white text-gray-800 font-semibold rounded-full overflow-hidden transition-all duration-300 text-sm sm:text-base border-2 border-gray-300 hover:border-pinkcustom flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl"
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Phone size={20} />
+              <Phone size={18} className="relative z-10" />
               <span className="relative z-10">Schedule Call</span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-pinkcustom/10 to-purplecustom/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"

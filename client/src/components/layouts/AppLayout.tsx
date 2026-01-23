@@ -5,7 +5,7 @@ import Hero from "./Hero";
 import AboutUs from "./AboutUs";
 import WhatWeDo from "./WhatWeDo";
 import Results from "./Results";
-import Sponsers from "./Sponsors";
+import Sponsers from "./Reviews";
 import FooterSection from "./FooterSection";
 import Services from "./Services";
 

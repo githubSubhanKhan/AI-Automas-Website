@@ -6,7 +6,7 @@ import AboutUs from "./components/layouts/AboutUs";
 import Services from "./components/layouts/Services";
 import WhatWeDo from "./components/layouts/WhatWeDo";
 import Results from "./components/layouts/Results";
-import Sponsors from "./components/layouts/Sponsors";
+import Sponsors from "./components/layouts/Reviews";
 import Form from "./components/layouts/Form";
 
 export const router = createBrowserRouter([
