@@ -17,13 +17,13 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            {/* <img 
-               src="/logos/FullLogo.png"
+            <img 
+               src="/logos/Aiautomas-colored-01.png"
                 alt="SimpliScale"
                 className="h-36 sm:h-40 md:h-42 w-auto"
-            /> */}
+            />
 
-            <div
+            {/* <div
               className="h-36 sm:h-40 md:h-42 w-[220px] sm:w-[260px] md:w-[300px] 
                         bg-gradient-to-r from-[#e265e3] to-[#9861c5]"
               style={{
@@ -36,7 +36,7 @@ const Navbar = () => {
                 maskSize: "contain",
                 maskPosition: "center",
               }}
-            />
+            /> */}
 
             <span className="ml-3 text-xl sm:text-2xl font-semibold text-white">
             </span>
