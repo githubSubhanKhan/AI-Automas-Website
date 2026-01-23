@@ -208,14 +208,22 @@ const copyNumber = async () => {
                     className="mb-6"
                   >
             
-
-                    <div className="mb-6">
-                      <img
-                        src="/logos/logo.png"
-                        alt="Company Logo"
-                        className="h-10 sm:h-16 md:h-18 w-auto object-contain opacity-90 hover:opacity-100 transition"
-                      />
-                    </div>
+                    <div
+                      className="h-10 sm:h-16 md:h-18
+                                w-[110px] sm:w-[170px] md:w-[190px]
+                                opacity-90 hover:opacity-100 transition
+                                bg-gradient-to-r from-[#e265e3] to-[#9861c5]"
+                      style={{
+                        WebkitMaskImage: "url('/logos/logo.png')",
+                        WebkitMaskRepeat: "no-repeat",
+                        WebkitMaskSize: "contain",
+                        WebkitMaskPosition: "left center",
+                        maskImage: "url('/logos/logo.png')",
+                        maskRepeat: "no-repeat",
+                        maskSize: "contain",
+                        maskPosition: "left center",
+                      }}
+                    />
 
                   </motion.div>
                   <p className="text-sm sm:text-base text-gray-600 max-w-xs">
