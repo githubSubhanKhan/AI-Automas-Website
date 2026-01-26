@@ -80,8 +80,8 @@ const SponsorMarquee = () => {
         className="text-center mb-8 sm:mb-10 md:mb-12 px-4"
       >
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 mb-3 sm:mb-4">
-          <span className="inline-block">Hear from&nbsp;</span>
-          <span className="inline-block" style={primaryGradientText}>our partners</span>
+          <span className="inline-block">Hear From&nbsp;</span>
+          <span className="inline-block" style={primaryGradientText}>Our Partners</span>
         </h2>
         <p className="text-sm sm:text-base md:text-lg text-gray-600 font-light max-w-2xl mx-auto">
           Real stories from businesses transforming their operations with AI
