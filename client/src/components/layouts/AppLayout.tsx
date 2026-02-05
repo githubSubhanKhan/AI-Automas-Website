@@ -35,7 +35,7 @@ const LandingPage = () => {
 
       <Results />
 
-      <Sponsers />
+      {/* <Sponsers /> */}
 
       <FooterSection />
 
