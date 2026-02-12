@@ -85,8 +85,6 @@ const [notification, setNotification] = useState<{
       headers: { "Content-Type": "application/json" }
     });
 
-    console.log("Server Response:", response.data);
-
     setNotification({
       type: 'success',
       message: 'Form submitted successfully!'
@@ -111,7 +109,6 @@ const [notification, setNotification] = useState<{
     setTimeout(() => setNotification({ type: '', message: '' }), 3000);
 
   } catch (error: any) {
-    console.error("Error submitting form:", error);
     setNotification({
       type: 'error',
       message: 'Something went wrong. Please try again.'

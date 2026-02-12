@@ -49,10 +49,6 @@ exports.makeCall = async (req, res) => {
       });
     }
 
-    console.log("FROM:", process.env.MY_NUMBER);
-    console.log("TO:", phone);
-    console.log("AGENT:", process.env.RETELL_AGENT_ID);
-
     const call = await retellClient.call.createPhoneCall({
       from_number: process.env.MY_NUMBER,
       to_number: phone,
@@ -66,9 +62,6 @@ exports.makeCall = async (req, res) => {
     });
 
   } catch (error) {
-    // ✅ WRITE IT HERE ⬇⬇⬇
-    console.error("Retell Call Error:", error);
-
     return res.status(500).json({
       success: false,
       message: error?.message || "Failed to initiate call",
