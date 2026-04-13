@@ -17,7 +17,7 @@ const companyLinks = [
 { label: 'Results', href: '/results' },
 { label: 'Sponsors', href: '/sponsors' },
 ];
-const phoneNumber = "+1 234 567 8900";
+const phoneNumber = "+1 (415) 707-7755";
 
 const socialLinks = [
   { label: 'LinkedIn', href: 'https://linkedin.com' },

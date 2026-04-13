@@ -4,7 +4,7 @@ import { Phone, X } from 'lucide-react';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const DIRECT_PHONE = "+1 234 567 890"; // change to your real number
+const DIRECT_PHONE = "+1 (415) 707-7755"; // change to your real number
 
 interface StarLayerProps {
   count: number;
@@ -94,10 +94,10 @@ const Hero = () => {
   const [currentWord, setCurrentWord] = useState(0);
   const [showCallModal, setShowCallModal] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [notification, setNotification] = useState<{show: boolean, message: string, type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
+  const [notification, setNotification] = useState<{ show: boolean, message: string, type: 'success' | 'error' }>({ show: false, message: '', type: 'success' });
   const [copied, setCopied] = useState(false);
   const words = ['Software', 'Platform', 'Solution', 'Tool'];
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
@@ -106,41 +106,41 @@ const Hero = () => {
   }, []);
 
   const handleCall = async () => {
-  if (!phoneNumber.trim()) return;
+    if (!phoneNumber.trim()) return;
 
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/call/call`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: phoneNumber }),
-    });
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/call/call`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: phoneNumber }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      setNotification({show: true, message: "📞 Call initiated! You will receive a call shortly.", type: 'success'});
-      setTimeout(() => setNotification({show: false, message: '', type: 'success'}), 4000);
-      setShowCallModal(false);
-      setPhoneNumber("");
-    } else {
-      setNotification({show: true, message: data.message || "Call failed. Please try again.", type: 'error'});
-      setTimeout(() => setNotification({show: false, message: '', type: 'error'}), 4000);
+      if (data.success) {
+        setNotification({ show: true, message: "📞 Call initiated! You will receive a call shortly.", type: 'success' });
+        setTimeout(() => setNotification({ show: false, message: '', type: 'success' }), 4000);
+        setShowCallModal(false);
+        setPhoneNumber("");
+      } else {
+        setNotification({ show: true, message: data.message || "Call failed. Please try again.", type: 'error' });
+        setTimeout(() => setNotification({ show: false, message: '', type: 'error' }), 4000);
+      }
+    } catch (err) {
+      setNotification({ show: true, message: "Server error. Please try again.", type: 'error' });
+      setTimeout(() => setNotification({ show: false, message: '', type: 'error' }), 4000);
     }
-  } catch (err) {
-    setNotification({show: true, message: "Server error. Please try again.", type: 'error'});
-    setTimeout(() => setNotification({show: false, message: '', type: 'error'}), 4000);
-  }
-};
+  };
 
-const handleCopy = async () => {
-  try {
-    await navigator.clipboard.writeText(DIRECT_PHONE);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  } catch (err) {
-    console.error("Failed to copy number");
-  }
-};
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(DIRECT_PHONE);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy number");
+    }
+  };
 
   return (
     <StarsBackground>
@@ -155,11 +155,10 @@ const handleCopy = async () => {
               transition={{ type: "spring", damping: 20, stiffness: 300 }}
               className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none"
             >
-              <div className={`${
-                notification.type === 'success' 
-                  ? 'bg-gradient-to-r from-green-500 to-emerald-500' 
+              <div className={`${notification.type === 'success'
+                  ? 'bg-gradient-to-r from-green-500 to-emerald-500'
                   : 'bg-gradient-to-r from-red-500 to-rose-500'
-              } text-white px-6 py-4 rounded-2xl shadow-2xl backdrop-blur-sm w-full max-w-md pointer-events-auto`}>
+                } text-white px-6 py-4 rounded-2xl shadow-2xl backdrop-blur-sm w-full max-w-md pointer-events-auto`}>
                 <p className="text-center font-semibold text-sm sm:text-base">{notification.message}</p>
               </div>
             </motion.div>
@@ -178,7 +177,7 @@ const handleCopy = async () => {
                 className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
                 onClick={() => setShowCallModal(false)}
               />
-              
+
               {/* Modal Content */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -316,14 +315,14 @@ const handleCopy = async () => {
         <div className="relative z-10 text-center max-w-6xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-extralight text-gray-800 mb-8 sm:mb-10 md:mb-12 tracking-tight leading-snug text-center mt-20"
-  style={{ fontFamily: "'Poppins', sans-serif" }}
->
-  You Don't Need Another
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-extralight text-gray-800 mb-8 sm:mb-10 md:mb-12 tracking-tight leading-snug text-center mt-20"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            You Don't Need Another
           </motion.h1>
-          
+
           {/* Animated rotating text */}
           <div className="relative h-16 sm:h-20 md:h-28 lg:h-36 xl:h-44 mb-6 sm:mb-8 md:mb-10 overflow-hidden">
             <div className="relative h-full flex items-center justify-center">
@@ -365,7 +364,7 @@ const handleCopy = async () => {
           </motion.p>
 
           {/* CTA Buttons */}
-                    <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
